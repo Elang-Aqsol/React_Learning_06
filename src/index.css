@@ -1,0 +1,16 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.row {
+  display: flex; /* Use flexbox */
+  align-items: center;
+  justify-content: center; /* Align items vertically center */
+}
+
+/* Assuming Minus and Plus are components that render as inline elements */
+.Minus,
+.Plus {
+  display: inline;
+}
