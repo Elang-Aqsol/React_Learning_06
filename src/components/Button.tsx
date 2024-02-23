@@ -18,4 +18,12 @@ const Minus: React.FC<Button> = ({ onClick }) => {
   );
 };
 
-export { Plus, Minus };
+const Reset: React.FC<Button> = ({ onClick }) => {
+  return (
+    <button style={{ margin: "5px" }} onClick={onClick}>
+      Reset
+    </button>
+  );
+};
+
+export { Plus, Minus, Reset };

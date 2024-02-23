@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Minus, Plus } from "./components/Button";
+import { Minus, Plus, Reset } from "./components/Button";
+import { InputRail, InputText } from "./components/Input";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -8,14 +9,6 @@ function App() {
   const date = new Date();
   date.setDate(date.getDate() + count);
 
-  function handlePlusStep() {
-    setStep((step) => step + 1);
-  }
-
-  function handleMinusStep() {
-    setStep((step) => step - 1);
-  }
-
   function handlePlusCount() {
     setCount((count) => count + step);
   }
@@ -23,16 +16,31 @@ function App() {
     setCount((count) => count - step);
   }
 
+  function handleReset() {
+    setCount(0);
+    setStep(1);
+  }
+
   return (
     <div className="App">
       <div className="row">
-        <Minus onClick={handleMinusStep} />
-        <span>Step: {step}</span>
-        <Plus onClick={handlePlusStep} />
+        <InputRail
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+          children={0}
+        />
+        {step}
       </div>
       <div className="row">
         <Minus onClick={handleMinusCount} />
-        <span>Count: {count}</span>
+        <InputText
+          value={count}
+          onChange={(e) => {
+            setCount(Number(e.target.value));
+          }}
+        >
+          {count}
+        </InputText>
         <Plus onClick={handlePlusCount} />
       </div>
       <p>
@@ -45,6 +53,11 @@ function App() {
         </span>
         <span>{date.toDateString()}</span>
       </p>
+      {count !== 0 || step !== 1 ? (
+        <div>
+          <Reset onClick={handleReset} />
+        </div>
+      ) : null}
     </div>
   );
 }
